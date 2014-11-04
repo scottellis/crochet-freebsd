@@ -1,6 +1,6 @@
 /config.sh
 /u-boot*
-/work
+/work*
 *~
 nohup.out
 /rk*
