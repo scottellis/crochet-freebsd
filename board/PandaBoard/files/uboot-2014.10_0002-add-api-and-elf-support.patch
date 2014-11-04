@@ -1,0 +1,29 @@
+From 2e7ca5143ffce21bf79584eb7bc483fa0eded30c Mon Sep 17 00:00:00 2001
+From: Scott Ellis <scott@jumpnowtek.com>
+Date: Tue, 4 Nov 2014 15:13:29 -0500
+Subject: [PATCH 2/3] add api and elf support
+
+---
+ include/configs/omap4_panda.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/include/configs/omap4_panda.h b/include/configs/omap4_panda.h
+index b5e845d..49bf7c1 100644
+--- a/include/configs/omap4_panda.h
++++ b/include/configs/omap4_panda.h
+@@ -72,4 +72,12 @@
+ 
+ #endif 
+ 
++#ifndef CONFIG_SPL_BUILD
++
++#define CONFIG_CMD_ELF
++#define CONFIG_API
++#define CONFIG_SYS_MMC_MAX_DEVICE 1
++
++#endif
++
+ #endif /* __CONFIG_PANDA_H */
+-- 
+1.9.1
+

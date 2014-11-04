@@ -1,5 +1,5 @@
 KERNCONF=PANDABOARD
-PANDABOARD_UBOOT_SRC=${TOPDIR}/u-boot-2012.07
+PANDABOARD_UBOOT_SRC=${TOPDIR}/u-boot-2014.10
 IMAGE_SIZE=$((1000 * 1000 * 1000))
 TARGET_ARCH=armv6
 
@@ -23,7 +23,7 @@ pandaboard_check_prerequisites ( ) {
         PANDABOARD_UBOOT_SRC \
         "${PANDABOARD_UBOOT_SRC}/board/ti/panda/Makefile"
     strategy_add $PHASE_BUILD_OTHER uboot_patch ${PANDABOARD_UBOOT_SRC} `uboot_patch_files`
-    strategy_add $PHASE_BUILD_OTHER uboot_configure ${PANDABOARD_UBOOT_SRC} omap4_panda
+    strategy_add $PHASE_BUILD_OTHER uboot_configure ${PANDABOARD_UBOOT_SRC} omap4_panda_config
     strategy_add $PHASE_BUILD_OTHER uboot_build ${PANDABOARD_UBOOT_SRC}
 }
 strategy_add $PHASE_CHECK pandaboard_check_prerequisites
@@ -32,7 +32,7 @@ pandaboard_install_uboot ( ) {
     # Current working directory is set to BOARD_BOOT_MOUNTPOINT
     echo "Installing U-Boot onto the boot partition"
     # For now, we use a copy of an MLO built by someone else.
-    cp ${BOARDDIR}/boot/MLO .
+    # cp ${BOARDDIR}/boot/MLO .
     # TODO: We should be able to use MLO built by U-Boot. <sigh>
     #
     # As of late 2012, this is broken in the Denx U-Boot sources.
@@ -41,8 +41,8 @@ pandaboard_install_uboot ( ) {
     # CONFIG_SPL_MAX_SIZE in include/configs/omap4_common.h and then
     # see if you can puzzle out how to get it to actually build.
     #
-    #cp ${PANDABOARD_UBOOT_SRC}/MLO .
-    cp ${PANDABOARD_UBOOT_SRC}/u-boot.bin .
+    cp ${PANDABOARD_UBOOT_SRC}/MLO .
+    cp ${PANDABOARD_UBOOT_SRC}/u-boot.img .
 }
 strategy_add $PHASE_BOOT_INSTALL pandaboard_install_uboot
 
