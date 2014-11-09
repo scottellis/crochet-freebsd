@@ -4,12 +4,12 @@ Manufactured by [Gumstix][gumstix], the Duovero COMs are small
 form-factor ARM boards based on the TI OMAP4430 Dual Cortex-A9
 processor.
 
-The Duovero COMS come in 2 flavors
+The Duovero COMs currently come in 2 flavors
 
 * [Duovero Crystal][duovero-crystal] 
-* [Duovero Zephyr][duovero-zephyr] - adds a Marvell Wifi/Bluetooth (supports AP) 
+* [Duovero Zephyr][duovero-zephyr] - adds wifi and bluetooth 
 
-They each come with 1 GB of memory and boot from a microSD card.
+They come with 1 GB of memory and boot from a microSD card.
 
 The Duovero COMs require an expansion board for use.
 
