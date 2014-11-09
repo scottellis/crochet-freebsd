@@ -13,16 +13,14 @@ They come with 1 GB of memory and boot from a microSD card.
 
 The Duovero COMs require an expansion board for use.
 
-I recommend the [Parlor][parlor] expansion board for getting
-started.
+I recommend the [Parlor][parlor] if this is your first board.
 
 The [Chateau][chateau] expansion board gives direct access to more
 of the lines coming from the COM, but is less convenient when getting
 started. 
 
-Don't forget to get a 5V power supply from Gumstix for the expansion
-board. At least for your first board. The power jack is not the standard
-barrel size.
+Don't forget a 5V power supply from Gumstix for the expansion board.
+The power jack is not the standard barrel size.
 
 ### Status
 
