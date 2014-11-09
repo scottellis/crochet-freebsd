@@ -6,8 +6,8 @@ processor.
 
 The Duovero COMS come in 2 flavors
 
-*[Duovero Crystal][duovero-crystal] 
-*[Duovero Zephyr][duovero-zephyr] - adds a Marvell Wifi/Bluetooth (supports AP) 
+    [Duovero Crystal][duovero-crystal] 
+    [Duovero Zephyr][duovero-zephyr] - adds a Marvell Wifi/Bluetooth (supports AP) 
 
 They each come with 1 GB of memory and boot from a microSD card.
 
@@ -30,10 +30,10 @@ barrel size.
 * The system boots from an SD card.
 * Serial console (UART3) and UART2 are both working.
 * The I2C busses and USB Host are recognized but I have not tested
-either. (I don't know how to use either with FreeBSD ;-)
+  either. (I don't know how to use either with FreeBSD ;-)
 * Ethernet does not work. Needs a driver and setup in the dts.
 * I haven't tried a Zephyr but I'm pretty sure (about 100% sure) that
-Wifi/BT won't work since there is no definition for them in the dts.
+  Wifi/BT won't work since there is no definition for them in the dts.
 
 
 The Duovero board is not explicitly supported by FreeBSD.
