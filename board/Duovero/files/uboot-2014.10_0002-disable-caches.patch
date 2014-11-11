@@ -1,0 +1,26 @@
+From 34637c39da3c9ff4ee2069fad2016eb5e492f90b Mon Sep 17 00:00:00 2001
+From: Scott Ellis <scott@jumpnowtek.com>
+Date: Tue, 11 Nov 2014 11:06:58 -0500
+Subject: [PATCH] duovero: disable caches
+
+---
+ include/configs/duovero.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/include/configs/duovero.h b/include/configs/duovero.h
+index b7fd944..b1e2990 100644
+--- a/include/configs/duovero.h
++++ b/include/configs/duovero.h
+@@ -62,6 +62,9 @@
+ /* freebsd/crochet build requirements */
+ undef CONFIG_SYS_THUMB_BUILD
+ 
++#define CONFIG_SYS_ICACHE_OFF
++#define CONFIG_SYS_DCACHE_OFF
++
+ #ifndef CONFIG_SPL_BUILD
+ #define CONFIG_CMD_ELF
+ #define CONFIG_API
+-- 
+1.9.1
+
