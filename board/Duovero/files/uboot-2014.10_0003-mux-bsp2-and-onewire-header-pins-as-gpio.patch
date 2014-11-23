@@ -1,0 +1,46 @@
+From 3a3f7bbef62dc67032c3d56f41734628d43bbd64 Mon Sep 17 00:00:00 2001
+From: Scott Ellis <scott@jumpnowtek.com>
+Date: Sat, 22 Nov 2014 09:03:37 -0500
+Subject: [PATCH] Mux bsp2 and one-wire pins on expansion header as gpio
+
+---
+ board/gumstix/duovero/duovero_mux_data.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/board/gumstix/duovero/duovero_mux_data.h b/board/gumstix/duovero/duovero_mux_data.h
+index 1be247b..35e2747 100644
+--- a/board/gumstix/duovero/duovero_mux_data.h
++++ b/board/gumstix/duovero/duovero_mux_data.h
+@@ -111,15 +111,15 @@ const struct pad_conf_entry core_padconf_array_non_essential[] = {
+ 	{USBB1_ULPITLL_DAT7, (IEN | OFF_EN | OFF_PD | OFF_IN | M4)},	/* usbb1_ulpiphy_dat7 */
+ 	{USBB1_HSIC_DATA, (PTU | IEN | M3)},				/* gpio_96 - usbh_cpen */
+ 	{USBB1_HSIC_STROBE, (PTU | IEN | M3)},				/* gpio_97 - usbh_reset */
+-	{ABE_MCBSP2_CLKX, (IEN | OFF_EN | OFF_PD | OFF_IN | M0)},	/* abe_mcbsp2_clkx */
+-	{ABE_MCBSP2_DR, (IEN | OFF_EN | OFF_OUT_PTD | M0)},		/* abe_mcbsp2_dr */
+-	{ABE_MCBSP2_DX, (OFF_EN | OFF_OUT_PTD | M0)},			/* abe_mcbsp2_dx */
+-	{ABE_MCBSP2_FSX, (IEN | OFF_EN | OFF_PD | OFF_IN | M0)},	/* abe_mcbsp2_fsx */
++	{ABE_MCBSP2_CLKX, (M3)},					/* gpio_110 */
++	{ABE_MCBSP2_DR, (M3)},						/* gpio_111 */
++	{ABE_MCBSP2_DX, (M3)},						/* gpio_112 */
++	{ABE_MCBSP2_FSX, (M3)},						/* gpio_113 */
+ 	{ABE_PDM_UL_DATA, (PTD | IEN | OFF_EN | OFF_PD | OFF_IN | M0)},	/* abe_pdm_ul_data */
+ 	{ABE_PDM_DL_DATA, (PTD | IEN | OFF_EN | OFF_PD | OFF_IN | M0)},	/* abe_pdm_dl_data */
+ 	{ABE_PDM_FRAME, (PTU | IEN | OFF_EN | OFF_PD | OFF_IN | M0)},	/* abe_pdm_frame */
+ 	{ABE_PDM_LB_CLK, (PTD | IEN | OFF_EN | OFF_PD | OFF_IN | M0)},	/* abe_pdm_lb_clk */
+-	{ABE_CLKS, (PTD | IEN | OFF_EN | OFF_PD | OFF_IN | M0)},	/* abe_clks */
++	{ABE_CLKS, (PTD | IEN | M3)},					/* gpio_118 */
+ 	{ABE_DMIC_CLK1, (M0)},						/* abe_dmic_clk1 */
+ 	{ABE_DMIC_DIN1, (IEN | M0)},					/* abe_dmic_din1 */
+ 	{ABE_DMIC_DIN2, (IEN | M0)},					/* abe_dmic_din2 */
+@@ -128,7 +128,7 @@ const struct pad_conf_entry core_padconf_array_non_essential[] = {
+ 	{UART2_RTS, (M0)},						/* uart2_rts */
+ 	{UART2_RX, (PTU | IEN | M0)},					/* uart2_rx */
+ 	{UART2_TX, (M0)},						/* uart2_tx */
+-	{HDQ_SIO, (M0)},						/* hdq-sio */
++	{HDQ_SIO, (PTU | IEN | M3)},					/* gpio_127 */
+ 	{MCSPI1_CLK, (IEN | OFF_EN | OFF_PD | OFF_IN | M0)},		/* mcspi1_clk */
+ 	{MCSPI1_SOMI, (IEN | OFF_EN | OFF_PD | OFF_IN | M0)},		/* mcspi1_somi */
+ 	{MCSPI1_SIMO, (IEN | OFF_EN | OFF_PD | OFF_IN | M0)},		/* mcspi1_simo */
+-- 
+1.9.1
+
