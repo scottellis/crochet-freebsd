@@ -15,7 +15,7 @@ WANDBOARD_DT_BASENAME=wandboard-dual
 wandboard_partition_image ( ) {
     disk_partition_mbr
     wandboard_uboot_install
-    disk_fat_create 50m 16 16384
+    disk_fat_create 64m 16 16384
     disk_ufs_create
 }
 strategy_add $PHASE_PARTITION_LWW wandboard_partition_image

@@ -1,14 +1,14 @@
 KERNCONF=DUOVERO
 DUOVERO_UBOOT_SRC=${TOPDIR}/u-boot-2014.10
-IMAGE_SIZE=$((1000 * 1000 * 1000))
+IMAGE_SIZE=$((4096 * 1000 * 1000))
 TARGET_ARCH=armv6
 
 #
-# Duovero uses MBR image with 2mb FAT partition for booting.
+# Duovero uses MBR image with 64mb FAT partition for booting.
 #
 duovero_partition_image ( ) {
     disk_partition_mbr
-    disk_fat_create 2m
+    disk_fat_create 64m
     disk_ufs_create
 }
 strategy_add $PHASE_PARTITION_LWW duovero_partition_image

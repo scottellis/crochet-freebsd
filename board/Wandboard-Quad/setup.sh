@@ -1,6 +1,6 @@
 KERNCONF=IMX6
 TARGET_ARCH=armv6
-IMAGE_SIZE=$((1024 * 1000 * 1000))
+IMAGE_SIZE=$((4096 * 1000 * 1000))
 WANDBOARD_UBOOT_SRC=${TOPDIR}/u-boot-2014.10
 WANDBOARD_UBOOT_CONFIG=wandboard_quad_config
 WANDBOARD_DT_BASENAME=wandboard-quad
@@ -15,7 +15,7 @@ WANDBOARD_DT_BASENAME=wandboard-quad
 wandboard_partition_image ( ) {
     disk_partition_mbr
     wandboard_uboot_install
-    disk_fat_create 50m 16 16384
+    disk_fat_create 64m 16 16384
     disk_ufs_create
 }
 strategy_add $PHASE_PARTITION_LWW wandboard_partition_image
