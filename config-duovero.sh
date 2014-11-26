@@ -1,7 +1,7 @@
 board_setup Duovero 
 
 WORKDIR=/work
-FREEBSD_SRC=/usr/src-current
+FREEBSD_SRC=/usr/home/scott/src-current
 
 FREEBSD_BUILDWORLD_EXTRA_ARGS="-j10"
 FREEBSD_BUILDKERNEL_EXTRA_ARGS="-j10"
