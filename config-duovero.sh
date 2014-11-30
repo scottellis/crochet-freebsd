@@ -8,6 +8,7 @@ FREEBSD_BUILDKERNEL_EXTRA_ARGS="-j10"
 
 option AutoSize
 option UsrSrc
+#IMAGE_SIZE=$((1024 * 1000 * 1000))
 
 customize_freebsd_partition () {
     pw moduser root -V etc/ -w yes
