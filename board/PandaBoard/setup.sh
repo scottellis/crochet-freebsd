@@ -1,6 +1,6 @@
 KERNCONF=PANDABOARD
 PANDABOARD_UBOOT_SRC=${TOPDIR}/u-boot-2014.10
-IMAGE_SIZE=$((1000 * 1000 * 1000))
+IMAGE_SIZE=$((1024 * 1000 * 1000))
 TARGET_ARCH=armv6
 
 #
@@ -31,16 +31,6 @@ strategy_add $PHASE_CHECK pandaboard_check_prerequisites
 pandaboard_install_uboot ( ) {
     # Current working directory is set to BOARD_BOOT_MOUNTPOINT
     echo "Installing U-Boot onto the boot partition"
-    # For now, we use a copy of an MLO built by someone else.
-    # cp ${BOARDDIR}/boot/MLO .
-    # TODO: We should be able to use MLO built by U-Boot. <sigh>
-    #
-    # As of late 2012, this is broken in the Denx U-Boot sources.
-    # Specifically, PandaBoard requires MLO to be under 32k and the
-    # default MLO is 38k.  If you'd like to help fix this, try setting
-    # CONFIG_SPL_MAX_SIZE in include/configs/omap4_common.h and then
-    # see if you can puzzle out how to get it to actually build.
-    #
     cp ${PANDABOARD_UBOOT_SRC}/MLO .
     cp ${PANDABOARD_UBOOT_SRC}/u-boot.img .
 }

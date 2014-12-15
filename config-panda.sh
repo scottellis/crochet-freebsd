@@ -1,24 +1,19 @@
-#
-# Custom PandaBoard configuration
-#
-# Copy this to another file and use that when running Crochet, e.g.
-#  $ sudo /bin/sh crochet.sh -c <myconfig>
-#
+board_setup PandaBoard 
 
-board_setup PandaBoard
+WORKDIR=/work
+FREEBSD_SRC=/usr/home/scott/src-current
 
-#PANDABOARD_UBOOT_SRC=${TOPDIR}/../u-boot-2012.07
-PANDABOARD_UBOOT_SRC=${TOPDIR}/../u-boot-2014.10
+FREEBSD_BUILDWORLD_EXTRA_ARGS="-j10"
+FREEBSD_BUILDKERNEL_EXTRA_ARGS="-j10"
 
 option AutoSize
+#option UsrSrc
+#IMAGE_SIZE=$((4096 * 1000 * 1000))
 
-KERNCONF=PANDABOARD
-
-#FREEBSD_SRC=/usr/src
-
-WORKDIR=${TOPDIR}/work-panda
-
-#IMG=${WORKDIR}/FreeBSD-${KERNCONF}.img
-
-#FREEBSD_INSTALL_WORLD=y
+customize_freebsd_partition () {
+    pw moduser root -V etc/ -w yes
+    sed -i -e 's/^#PermitRootLogin no/PermitRootLogin yes/' etc/ssh/sshd_config
+    cp usr/share/zoneinfo/EST5EDT etc/localtime
+    cat etc/motd | head -2 > etc/motd
+}
 
