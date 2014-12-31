@@ -1,14 +1,18 @@
 board_setup PandaBoard 
 
+PANDABOARD_UBOOT_SRC=${TOPDIR}/../pandaboard/u-boot-2014.10
+
 WORKDIR=/work
-FREEBSD_SRC=/usr/home/scott/src-current
+FREEBSD_SRC=/usr/home/scott/src-work
 
 FREEBSD_BUILDWORLD_EXTRA_ARGS="-j10"
 FREEBSD_BUILDKERNEL_EXTRA_ARGS="-j10"
 
 option AutoSize
-#option UsrSrc
-#IMAGE_SIZE=$((4096 * 1000 * 1000))
+
+# uncomment these together
+# option UsrSrc
+# IMAGE_SIZE=$((4096 * 1000 * 1000))
 
 customize_freebsd_partition () {
     pw moduser root -V etc/ -w yes
