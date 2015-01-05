@@ -1,17 +1,21 @@
 Crochet is a tool for building bootable FreeBSD images.
 
+This [duovero] branch has only been tested with CURRENT.
 
-This tool was formerly known as "freebsd-beaglebone" or
-"beaglebsd" as the original work was done for BeagleBone.
-But it now supports more boards and should easily extend
-to support many more.
+The Duovero and PandaBoard builds assume a u-boot already
+built with ports.
 
-[FAQ](https://github.com/kientzle/crochet-freebsd/wiki/FAQ)
+I am not using xdev tools.
 
-[Supported Platforms](https://github.com/kientzle/crochet-freebsd/wiki/Supported-Platforms)
+The builds also assume patches from [duovero-freebsd][duovero-freebsd]
+have been applied to the source tree.
 
-[How to Build a Disk Image](https://github.com/kientzle/crochet-freebsd/wiki/How-to-Build-a-Disk-Image)
+The Wandboards scripts have NOT been updated to use a u-boot
+built with ports. (TODO)
 
-[Command-line Options](https://github.com/kientzle/crochet-freebsd/wiki/Command-Line-Options)
+Duovero, PandaBoard and Wandboards are the only boards I
+have been working with.
 
-[Potential Projects](https://github.com/kientzle/crochet-freebsd/wiki/Projects)
+BeagleBone and RPi are also on the TODO.
+
+[duovero-freebsd]: https://github.com/scottellis/duovero-freebsd
