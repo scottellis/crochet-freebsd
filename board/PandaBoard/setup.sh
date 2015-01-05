@@ -1,38 +1,43 @@
 KERNCONF=PANDABOARD
-PANDABOARD_UBOOT_SRC=${TOPDIR}/u-boot-2014.10
+UBOOT_BINDIR=/usr/local/share/u-boot/u-boot-pandaboard
 IMAGE_SIZE=$((1024 * 1000 * 1000))
 TARGET_ARCH=armv6
 
 #
-# PandaBoard uses MBR image with 2mb FAT partition for booting.
+# PandaBoard uses MBR image with 64mb FAT partition for booting.
 #
 pandaboard_partition_image ( ) {
     disk_partition_mbr
-    disk_fat_create 2m
+    disk_fat_create 64m
     disk_ufs_create
 }
 strategy_add $PHASE_PARTITION_LWW pandaboard_partition_image
 
 #
-# PandaBoard uses U-Boot
+# PandaBoard uses U-Boot built with ports
 #
 pandaboard_check_prerequisites ( ) {
-    uboot_set_patch_version ${PANDABOARD_UBOOT_SRC} ${PANDABOARD_UBOOT_PATCH_VERSION}
+    if [ ! -f ${UBOOT_BINDIR}/MLO ]; then
+        echo "${UBOOT_BINDIR}/MLO not found"
+        echo "Please build port: sysutils/u-boot-pandaboard"
+        exit 1
+    fi
 
-    uboot_test \
-        PANDABOARD_UBOOT_SRC \
-        "${PANDABOARD_UBOOT_SRC}/board/ti/panda/Makefile"
-    strategy_add $PHASE_BUILD_OTHER uboot_patch ${PANDABOARD_UBOOT_SRC} `uboot_patch_files`
-    strategy_add $PHASE_BUILD_OTHER uboot_configure ${PANDABOARD_UBOOT_SRC} omap4_panda_config
-    strategy_add $PHASE_BUILD_OTHER uboot_build ${PANDABOARD_UBOOT_SRC}
+    if [ ! -f ${UBOOT_BINDIR}/u-boot.img ]; then
+        echo "${UBOOT_BINDIR}/u-boot.img not found"
+        echo "Please build port: sysutils/u-boot-pandaboard"
+        exit 1
+    fi
+
+    echo "Found sysutils/u-boot-pandaboard binaries"
 }
 strategy_add $PHASE_CHECK pandaboard_check_prerequisites
 
 pandaboard_install_uboot ( ) {
     # Current working directory is set to BOARD_BOOT_MOUNTPOINT
     echo "Installing U-Boot onto the boot partition"
-    cp ${PANDABOARD_UBOOT_SRC}/MLO .
-    cp ${PANDABOARD_UBOOT_SRC}/u-boot.img .
+    cp ${UBOOT_BINDIR}/MLO .
+    cp ${UBOOT_BINDIR}/u-boot.img .
 }
 strategy_add $PHASE_BOOT_INSTALL pandaboard_install_uboot
 

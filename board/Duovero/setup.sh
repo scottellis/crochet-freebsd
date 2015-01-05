@@ -18,13 +18,13 @@ strategy_add $PHASE_PARTITION_LWW duovero_partition_image
 #
 duovero_check_prerequisites() {
     if [ ! -f ${UBOOT_BINDIR}/MLO ]; then
-        echo "Duovero '${UBOOT_BINDIR}/MLO' not found"
+        echo "${UBOOT_BINDIR}/MLO not found"
         echo "Please build port: sysutils/u-boot-duovero"
         exit 1
     fi
 
     if [ ! -f ${UBOOT_BINDIR}/u-boot.img ]; then
-        echo "Duovero '${UBOOT_BINDIR}/u-boot.img' not found"
+        echo "${UBOOT_BINDIR}/u-boot.img not found"
         echo "Please build port: sysutils/u-boot-duovero"
         exit 1
     fi
