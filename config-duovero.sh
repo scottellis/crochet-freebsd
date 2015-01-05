@@ -1,9 +1,7 @@
 board_setup Duovero 
 
-DUOVERO_UBOOT_SRC=${TOPDIR}/../duovero/u-boot-2014.10
-
 WORKDIR=/work
-FREEBSD_SRC=/usr/home/scott/src-work
+FREEBSD_SRC=/usr/home/scott/src-current
 
 FREEBSD_BUILDWORLD_EXTRA_ARGS="-j10"
 FREEBSD_BUILDKERNEL_EXTRA_ARGS="-j10"

@@ -1,5 +1,5 @@
 KERNCONF=DUOVERO
-DUOVERO_UBOOT_SRC=${TOPDIR}/u-boot-2014.10
+UBOOT_BINDIR=/usr/local/share/u-boot/u-boot-duovero
 IMAGE_SIZE=$((1024 * 1000 * 1000))
 TARGET_ARCH=armv6
 
@@ -14,25 +14,30 @@ duovero_partition_image ( ) {
 strategy_add $PHASE_PARTITION_LWW duovero_partition_image
 
 #
-# Duovero uses U-Boot
+# Duovero uses U-Boot built with ports
 #
-duovero_check_prerequisites ( ) {
-    uboot_set_patch_version ${DUOVERO_UBOOT_SRC} ${DUOVERO_UBOOT_PATCH_VERSION}
+duovero_check_prerequisites() {
+    if [ ! -f ${UBOOT_BINDIR}/MLO ]; then
+        echo "Duovero '${UBOOT_BINDIR}/MLO' not found"
+        echo "Please build port: sysutils/u-boot-duovero"
+        exit 1
+    fi
 
-    uboot_test \
-        DUOVERO_UBOOT_SRC \
-        "${DUOVERO_UBOOT_SRC}/board/gumstix/duovero/Makefile"
-    strategy_add $PHASE_BUILD_OTHER uboot_patch ${DUOVERO_UBOOT_SRC} `uboot_patch_files`
-    strategy_add $PHASE_BUILD_OTHER uboot_configure ${DUOVERO_UBOOT_SRC} duovero_config
-    strategy_add $PHASE_BUILD_OTHER uboot_build ${DUOVERO_UBOOT_SRC}
+    if [ ! -f ${UBOOT_BINDIR}/u-boot.img ]; then
+        echo "Duovero '${UBOOT_BINDIR}/u-boot.img' not found"
+        echo "Please build port: sysutils/u-boot-duovero"
+        exit 1
+    fi
+
+    echo "Found sysutils/u-boot-duovero binaries"
 }
 strategy_add $PHASE_CHECK duovero_check_prerequisites
 
 duovero_install_uboot ( ) {
     # Current working directory is set to BOARD_BOOT_MOUNTPOINT
     echo "Installing U-Boot onto the boot partition"
-    cp ${DUOVERO_UBOOT_SRC}/MLO .
-    cp ${DUOVERO_UBOOT_SRC}/u-boot.img .
+    cp ${UBOOT_BINDIR}/MLO .
+    cp ${UBOOT_BINDIR}/u-boot.img .
 }
 strategy_add $PHASE_BOOT_INSTALL duovero_install_uboot
 
