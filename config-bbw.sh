@@ -1,6 +1,6 @@
 board_setup BeagleBone 
 
-KERNCONF=BEAGLEBONE-BLACK
+KERNCONF=BEAGLEBONE
 
 WORKDIR=/work
 FREEBSD_SRC=/usr/home/scott/src-current
